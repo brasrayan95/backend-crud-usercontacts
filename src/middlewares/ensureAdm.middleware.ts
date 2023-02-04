@@ -5,9 +5,9 @@ const ensureIsAdmMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user.isAdm) {
+  if (!((req.user.isAdm) || (req.user.id===req.params.id))) {
     return res.status(403).json({
-      message: "User is not a administrator",
+      message: "User has no permission to do this action",
     });
   }
   return next();
