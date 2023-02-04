@@ -1,6 +1,7 @@
 import { Exclude } from "class-transformer";
 
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Contact } from "./contacts.entity";
 
 @Entity("users")
 export class User {
@@ -13,6 +14,10 @@ export class User {
     @Column({ length: 50 })
     email: string;
 
+    @Column({ length: 120 })
+    @Exclude()
+    password: string;
+
     @Column({ length: 50 })
     phone: string;
 
@@ -21,4 +26,13 @@ export class User {
 
     @UpdateDateColumn()
     updatedAt: Date;
+
+    @Column()
+    isAdm: boolean;
+
+    @Column()
+    isActive: boolean;
+
+    @OneToMany(() => Contact, (contact) => contact.user)
+    contacts: Contact[];
 }

@@ -1,16 +1,14 @@
 import "reflect-metadata";
 
 import express, { Router } from "express";
+import userRoutes from "./routes/users.routes";
+import errorHandlingMiddleware from "./middlewares/errorHandling.middleware";
 
 
 const app = express();
 app.use(express.json());
+app.use(userRoutes);
 
-
-const port = 3002
-
-app.get("/", (req, res) => {
-    res.send(`Server running on port ${port}`)
-})
+app.use(errorHandlingMiddleware);
 
 export default app;
