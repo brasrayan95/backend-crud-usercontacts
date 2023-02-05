@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, listUserController, softDeleteUserController, updateUserController } from "../controllers/users.controllers";
+import { createUserController, listUserController, getOneUserController, softDeleteUserController, updateUserController } from "../controllers/users.controllers";
 import ensureIsAdmMiddleware from "../middlewares/ensureAdm.middleware";
 import ensureAuthMiddleware from "../middlewares/ensureAuth.middleware";
 
@@ -11,6 +11,10 @@ userRoutes.get("/users",
     ensureAuthMiddleware,
     ensureIsAdmMiddleware,
     listUserController);
+userRoutes.get("/users/:id",
+    ensureAuthMiddleware,
+    ensureIsAdmMiddleware,
+    getOneUserController);
 userRoutes.patch("/users/:id",
     ensureAuthMiddleware,
     ensureIsAdmMiddleware,

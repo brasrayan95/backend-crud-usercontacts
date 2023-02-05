@@ -46,6 +46,21 @@ const getUsersService = async (): Promise<User[]> => {
     return users
 }
 
+const getOneUserService = async (id: string) => {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({id});
+
+    if (!user) {
+        throw new AppError("User not found", 404);
+    }
+
+    if (!user.isActive) {
+        throw new AppError("User is not active", 400);
+    }
+
+    return user;
+}
+
 const updateUserService = async (
     { fullname, email, password, phone }: IUserUpdate, id: string): Promise <User | Array<string | number>> => {
         const userRepository = AppDataSource.getRepository(User);
@@ -85,4 +100,4 @@ const softDeleteUserService = async (id: string) => {
 }
 
 
-export { createUserService, getUsersService, updateUserService, softDeleteUserService };
+export { createUserService, getOneUserService, getUsersService, updateUserService, softDeleteUserService };
