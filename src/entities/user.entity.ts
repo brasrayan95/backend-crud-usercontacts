@@ -1,6 +1,6 @@
 import { Exclude } from "class-transformer";
 
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { Contact } from "./contacts.entity";
 
 @Entity("users")

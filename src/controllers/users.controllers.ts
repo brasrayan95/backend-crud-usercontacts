@@ -25,7 +25,7 @@ const getOneUserController = async (req: Request, res: Response) => {
     try {
         const id: string = req.params.id;
         const user = await getOneUserService(id);
-        return res.status(209).json(instanceToPlain(user))
+        return res.status(200).json(instanceToPlain(user))
     } catch (err) {
         if (err instanceof Error){
             return res.status(400).json({message: err.message})
@@ -42,15 +42,9 @@ const updateUserController = async (req: Request, res: Response) => {
 }
 
 const softDeleteUserController = async (req: Request, res: Response) => {
-    try {
         const {id} = req.params;
         const result = await softDeleteUserService(id);
-        return res.status(204).json(result);
-    } catch (err) {
-        if (err instanceof Error){
-            return res.status(400).json({message: err.message})
-        }
-    }
+        return res.status(204).json(result);      
 }
 
 export {createUserController, listUserController, updateUserController, softDeleteUserController, getOneUserController};

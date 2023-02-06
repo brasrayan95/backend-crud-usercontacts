@@ -40,7 +40,7 @@ const getUsersService = async (): Promise<User[]> => {
     const users = await userRepository.find();
 
     if (!users.length) {
-        throw new AppError("Thereś no available users.");
+        throw new AppError("There's no available users.");
     }
 
     return users

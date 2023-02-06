@@ -1,4 +1,4 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { User } from "./user.entity";
 
 @Entity("contacts")
@@ -21,6 +21,6 @@ export class Contact {
     @UpdateDateColumn()
     updatedAt: Date;
 
-    @ManyToOne(() => User, { eager: true })
-    user: User["id"];
+    @ManyToOne(() => User)
+    user: User;
 }
