@@ -10,6 +10,8 @@ const ensureIsAdmMiddleware = async (
       message: "User has no permission to do this action",
     });
   }
+
+  //pegar as infos da requisiçao e comparar com uma unidade de contato
   return next();
 };
 
