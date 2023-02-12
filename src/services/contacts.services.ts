@@ -20,12 +20,10 @@ const createContactService = async ({fullname, email, phone} : IContactRequest, 
 }
 
 const listContactsByUserService = async (userId:string) => {
-    console.log(userId)
     const contactRepository = AppDataSource.getRepository(Contact);
     const contacts = await contactRepository.findBy({
         user: {id: userId}
     })
-    console.log(contacts)
 
     if (!contacts.length) {
         throw new AppError("There's no available contacts.");
